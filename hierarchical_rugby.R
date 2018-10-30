@@ -2,7 +2,6 @@ library("ggplot2")
 library("ggpubr")
 library("dplyr")
 
-# TODO: Set path to be relative from Nextflow call
 args = commandArgs(trailingOnly = TRUE)
 ROOT_PATH <- paste(args[1], "/", sep="")
 atks_star <- read.csv(paste(ROOT_PATH, "/", "atks_star.csv", sep=""))
@@ -23,17 +22,17 @@ defs <- defs_star %>%
 
 plot_astar <- ggplot(atks_star, aes(x = value, group = index_0, color = index_0)) + geom_density(size=1) + 
   scale_color_distiller(palette = "Set3") + 
-  labs(colour = "Team Index", title = "atks_star") + xlim(-1, 1)
+  labs(colour = "Team Index", title = "atks_star") + xlim(-1, 1) + theme(legend.position = "none")
 
 trace_astar <- ggplot(atks_star, aes(x = sample, y = value, group = index_0, color = index_0)) +
-  geom_line() + ylim(.6,-.6) + scale_color_distiller(palette = "Set3")
+  geom_line() + ylim(.6,-.6) + scale_color_distiller(palette = "Set3") + theme(legend.position = "none")
 
 plot_dstar <- ggplot(defs_star, aes(x = value, group = index_0, color = index_0)) + geom_density(size=1) + 
   scale_color_distiller(palette = "Set3") +
-  labs(colour = "Team Index", title = "defs_star") + xlim(-1, 1)
+  labs(colour = "Team Index", title = "defs_star") + xlim(-1, 1) + theme(legend.position = "none")
 
 trace_dstar <- ggplot(defs_star, aes(x = sample, y = value, group = index_0, color = index_0)) +
-  geom_line() + ylim(-1.2, 1.2) + scale_color_distiller(palette = "Set3")
+  geom_line() + ylim(-1.2, 1.2) + scale_color_distiller(palette = "Set3") + theme(legend.position = "none")
 
 plot_home <- ggplot(home, aes(x = value)) + geom_density(size=1, colour="turquoise") +
   labs(title = "home") + xlim(0,0.33)
@@ -59,16 +58,16 @@ trace_int <- ggplot(intercept, aes(x = sample, y = value)) +
   geom_line(color="turquoise") + ylim(2.75, 3.1)
 
 plot_atks <- ggplot(atks, aes(x = subtr_mean, group = index_0, color = index_0)) + geom_density(size = 1) +
-  scale_color_distiller(palette = "Set3") + labs(colour = "Team Index", title = "atks") + xlim(-0.4,0.4)
+  scale_color_distiller(palette = "Set3") + labs(colour = "Team Index", title = "atks") + xlim(-0.4,0.4) + theme(legend.position = "none")
 
 trace_atks <- ggplot(atks, aes(x = sample, y = subtr_mean, group = index_0, color = index_0)) +
-  geom_line() + scale_color_distiller(palette = "Set3") + ylim(-0.5, 0.5)
+  geom_line() + scale_color_distiller(palette = "Set3") + ylim(-0.5, 0.5) + theme(legend.position = "none")
 
 plot_defs <- ggplot(defs, aes(x = subtr_mean, group = index_0, color = index_0)) + geom_density(size = 1) +
-  scale_color_distiller(palette = "Set3") + labs(colour = "Team Index", title = "defs") + xlim(-.6, 0.8)
+  scale_color_distiller(palette = "Set3") + labs(colour = "Team Index", title = "defs") + xlim(-.6, 0.8) + theme(legend.position = "none")
 
 trace_defs <- ggplot(defs, aes(x = sample, y = subtr_mean, group = index_0, color = index_0)) +
-  geom_line() + scale_color_distiller(palette = "Set3") + ylim(-0.5, 0.7)
+  geom_line() + scale_color_distiller(palette = "Set3") + ylim(-0.5, 0.7) + theme(legend.position = "none")
 
 
 ggarrange(plot_astar, trace_astar,
